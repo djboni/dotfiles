@@ -1,0 +1,3 @@
+programs/src/
+secrets/id_rsa.*.asc
+secrets/id_rsa.*.pub

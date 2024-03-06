@@ -1,0 +1,43 @@
+general {
+    output_format = "i3bar"
+    colors = true
+    interval = 5
+}
+
+order += "disk /"
+order += "memory"
+order += "cpu_temperature 2"
+order += "load"
+order += "tztime local"
+
+disk "/" {
+    format = "%free"
+    format_below_threshold = "DISK: %free"
+    low_threshold = 30
+    threshold_type = percentage_free
+}
+
+memory {
+    #memory_used_method = memavailable
+    memory_used_method = classical
+    format = "%free %available/%total"
+    format_degraded = "MEM: %free %available/%total"
+    threshold_degraded = "10%"
+}
+
+cpu_temperature 2 {
+    format = "%degrees oC"
+    format_above_threshold = "TEMP: %degrees oC"
+    max_threshold = 75
+}
+
+load {
+    format = "%1min %5min %15min"
+    format_above_threshold = "LOAD: %1min %5min %15min"
+    max_threshold = 5
+}
+
+tztime local {
+    format = "(%U %a) %d/%b/%Y %H:%M:%S"
+    hide_if_equals_localtime = false
+}

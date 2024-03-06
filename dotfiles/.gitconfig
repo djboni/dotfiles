@@ -1,0 +1,12 @@
+# File: ~/.gitconfig
+[user]
+    name = Djones A. Boni
+    email = djboni@gmail.com
+[core]
+    editor = nvim
+[init]
+    defaultBranch = master
+[pull]
+    ff = only
+[merge]
+    conflictStyle = diff3
