@@ -1,8 +1,11 @@
 #!/bin/bash
-set -e
+set -ex
 
-set -x
-sudo apt install gitk
+if which apt; then
+	sudo apt install -y gitk
+elif which yum; then
+	sudo yum install -y gitk
+fi
 
 if [ ! -d ~/.config/wallpapers ]; then
 	git clone https://gitlab.com/dtos/dtos-backgrounds.git ~/.config/wallpapers ||

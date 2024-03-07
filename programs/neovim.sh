@@ -31,4 +31,5 @@ git fetch
 git checkout "$VERSION"
 make CMAKE_BUILD_TYPE=Release
 sudo make install
+cd ../..
 find src/neovim -user root -exec sudo chown $USER:$USER '{}' ';'
