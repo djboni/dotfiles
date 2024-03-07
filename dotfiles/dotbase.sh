@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+# This script just defines some functions and is not meant to be
+# sourced (. dotbase.sh).
 
 do_backup() {
 	local FILE="$1"
@@ -20,7 +21,7 @@ do_backup() {
 	fi
 }
 
-link_file() {
+create_link() {
 	local DEST="$1"
 	local FILE="$2"
 	do_backup "$DEST/$FILE"
@@ -28,29 +29,3 @@ link_file() {
 	ln -s "$PWD/$FILE" "$DEST/$FILE"
 	{ set +x; } 2> /dev/null
 }
-
-# Files
-link_file ~ .bashrc
-link_file ~ .gitconfig
-link_file ~ .profile
-link_file ~ .tmux.conf
-link_file ~ .xinitrc
-
-# Directories
-link_file ~ .config/bash
-link_file ~ .config/i3
-link_file ~ .config/i3status
-link_file ~ .config/scripts
-
-# Clone/update NeoVim configuration
-if [ -d ~/.config/nvim ]; then
-	set -x
-	cd ~/.config/nvim
-	git pull ||
-	true # It is OK if this command fails
-	{ set +x; } 2> /dev/null
-else
-	set -x
-	git clone https://github.com/djboni/kickstart.nvim ~/.config/nvim
-	{ set +x; } 2> /dev/null
-fi
