@@ -2,7 +2,7 @@
 set -ex
 
 if which apt; then
-	sudo apt install -y gitk
+	sudo apt install -y i3 light-locker feh gitk
 elif which yum; then
 	sudo yum install -y gitk
 fi
