@@ -11,6 +11,7 @@ create_link ~ .tmux.conf
 create_link ~ .xinitrc
 
 # Directories
+mkdir -p ~/.config
 create_link ~ .config/bash
 create_link ~ .config/i3
 create_link ~ .config/i3status

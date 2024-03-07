@@ -14,7 +14,11 @@ fi
 set -x
 
 # Install dependencies
-sudo apt install -y git make cmake ninja-build gettext unzip curl
+if which apt; then
+	sudo apt install -y git make cmake ninja-build gettext unzip curl
+elif which yum; then
+	sudo yum install -y git make cmake gettext unzip curl gcc
+fi
 
 # Get source code
 if [ ! -d src/neovim ]; then
