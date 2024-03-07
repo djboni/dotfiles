@@ -1,5 +1,12 @@
 #!/bin/bash
 # Build and install Neovim from source code.
+#
+# If you cannot build it is possible to download the binaries and extract:
+#
+# mkdir download
+# cd download
+# wget https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz
+# tar -zxf nvim-linux64.tar.gz --xform 's/nvim-linux64//' -C /usr/local
 set -e
 VERSION=v0.9.5
 

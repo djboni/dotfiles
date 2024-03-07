@@ -1,3 +1,4 @@
 programs/src/
+programs/download/
 secrets/id_rsa.*.asc
 secrets/id_rsa.*.pub
