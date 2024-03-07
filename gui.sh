@@ -1,5 +1,8 @@
 #!/bin/bash
-set -xe
-[ -d ~/.config/wallpapers ] ||
-git clone https://gitlab.com/dtos/dtos-backgrounds.git ~/.config/wallpapers ||
-true # It is OK if this script fails
+set -e
+if [ ! -d ~/.config/wallpapers ]; then
+	set -x
+	git clone https://gitlab.com/dtos/dtos-backgrounds.git ~/.config/wallpapers ||
+	true # It is OK if this command fails
+	{ set +x; } 2> /dev/null
+fi

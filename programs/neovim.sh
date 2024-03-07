@@ -3,21 +3,11 @@
 set -e
 VERSION=v0.9.5
 
-# Clone my configuration
-if [ -d ~/.config/nvim ]; then
-	set -x
-	cd ~/.config/nvim
-	git pull
-	{ set +x; } 2> /dev/null
-else
-	set -x
-	git clone https://github.com/djboni/kickstart.nvim ~/.config/nvim
-	{ set +x; } 2> /dev/null
-fi
-
 # Check if NeoVim is already installed
 if which nvim > /dev/null; then
 	echo "NeoVim is already installed in $(which nvim)"
+	echo "Version:"
+	nvim --version
 	exit 0
 fi
 
@@ -27,8 +17,9 @@ set -x
 sudo apt install -y git make cmake ninja-build gettext unzip curl
 
 # Get source code
-[ -d src/neovim ] ||
-git clone https://github.com/neovim/neovim src/neovim
+if [ ! -d src/neovim ]; then
+	git clone https://github.com/neovim/neovim src/neovim
+fi
 
 # Build and install
 cd src/neovim
