@@ -18,15 +18,17 @@ create_link ~ .config/i3status
 create_link ~ .config/scripts
 
 # Clone/update NeoVim configuration
-if [ -d ~/.config/nvim ]; then
+if [ -d .config/nvim ]; then
 	set -x
-	cd ~/.config/nvim
+	cd .config/nvim
 	git pull ||
 	true # It is OK if this command fails
+	cd ../..
 	{ set +x; } 2> /dev/null
 else
 	set -x
-	git clone https://github.com/djboni/kickstart.nvim ~/.config/nvim
+	git clone https://github.com/djboni/kickstart.nvim .config/nvim
 	{ set +x; } 2> /dev/null
 fi
-mkdir -p ~/.config/nvim/spell
+create_link ~ .config/nvim
+mkdir -p .config/nvim/spell
