@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 # Source the base file
-. ../dotbase.sh
+. dotbase.sh
 
 # Files
 create_link ~ .bashrc
