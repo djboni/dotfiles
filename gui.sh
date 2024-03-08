@@ -1,6 +1,7 @@
 #!/bin/bash
 set -ex
 
+which which
 if which apt; then
 	sudo apt install -y i3 light-locker feh gitk
 elif which yum; then

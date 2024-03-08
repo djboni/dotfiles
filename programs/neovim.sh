@@ -14,6 +14,7 @@ if [ -z $USER ]; then
 fi
 
 # Check if NeoVim is already installed
+which which
 if which nvim > /dev/null; then
 	echo "NeoVim is already installed in $(which nvim)"
 	echo "Version:"
