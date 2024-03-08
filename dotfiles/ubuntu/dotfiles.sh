@@ -29,3 +29,4 @@ else
 	git clone https://github.com/djboni/kickstart.nvim ~/.config/nvim
 	{ set +x; } 2> /dev/null
 fi
+mkdir -p ~/.config/nvim/spell
