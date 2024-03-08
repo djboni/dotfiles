@@ -9,6 +9,9 @@
 # tar -zxf nvim-linux64.tar.gz --xform 's/nvim-linux64//' -C /usr/local
 set -e
 VERSION=v0.9.5
+if [ -z $USER ]; then
+	USER="$(whoami)"
+fi
 
 # Check if NeoVim is already installed
 if which nvim > /dev/null; then
