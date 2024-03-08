@@ -1,6 +1,9 @@
 #!/bin/bash
 set -xe
 
+git pull ||
+true # It is OK if this command fails
+
 (cd dotfiles/ubuntu && ./dotfiles.sh)
 
 if which apt; then
