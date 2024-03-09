@@ -29,3 +29,37 @@ create_link() {
 	ln -s "$PWD/$FILE" "$DEST/$FILE"
 	{ set +x; } 2> /dev/null
 }
+
+install_if_absent() {
+	if [ -z $WHICH_TESTED ]; then
+		if which which >/dev/null 2>&1; then
+			echo "Found program 'which'" >&2
+			WHICH_TESTED=1
+		else
+			echo "Could nod find the program 'which'" >&2
+			exit 1
+		fi
+	fi
+	for PROG in "$@"; do
+		EXECUTABLE="${PROG%:*}"
+		PACKAGE="${PROG#*:}"
+
+		if which "$EXECUTABLE" >/dev/null 2>&1; then
+			echo "Found program '$EXECUTABLE'" >&2
+			continue
+		fi
+		if which apt >/dev/null 2>&1; then
+			set -x
+			sudo apt install -y "$PACKAGE"
+			{ set +x; } 2> /dev/null
+		elif which yum >/dev/null 2>&1; then
+			case "$PACKAGE" in
+			# Ignore unavailable
+			htop|ninja-build) continue ;;
+			esac
+			set -x
+			sudo yum install -y "$PACKAGE"
+			{ set +x; } 2> /dev/null
+		fi
+	done
+}

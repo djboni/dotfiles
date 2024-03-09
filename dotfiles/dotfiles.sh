@@ -21,10 +21,9 @@ create_link ~ .config/scripts
 if [ -d .config/nvim ]; then
 	set -x
 	cd .config/nvim
-	git pull ||
-	true # It is OK if this command fails
-	cd ../..
+	git pull || true # It is OK if this command fails
 	{ set +x; } 2> /dev/null
+	cd ../..
 else
 	set -x
 	git clone https://github.com/djboni/kickstart.nvim .config/nvim
