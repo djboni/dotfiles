@@ -2,6 +2,13 @@
 # This script just defines some functions and is not meant to be
 # sourced (. dotbase.sh).
 
+# Determine the installation prefix when building from source
+if [ "$(whoami)" == root ]; then
+	INSTALL_PREFIX="/usr/local"
+else
+	INSTALL_PREFIX="$HOME/.local"
+fi
+
 do_backup() {
 	local FILE="$1"
 
@@ -30,24 +37,38 @@ create_link() {
 	{ set +x; } 2> /dev/null
 }
 
-install_if_absent() {
-	if [ -z $WHICH_TESTED ]; then
-		if which which >/dev/null 2>&1; then
-			echo "Found program 'which'" >&2
-			WHICH_TESTED=1
-		else
-			echo "Could nod find the program 'which'" >&2
-			exit 1
-		fi
+exit_if_which_is_absent() {
+	if [ ! -z $WHICH_PRESENT ]; then
+		:
+	elif which which >/dev/null 2>&1; then
+		echo "Found program 'which'" >&2
+		WHICH_PRESENT=1
+	else
+		echo "Could not find the program 'which'" >&2
+		exit 1
 	fi
-	for PROG in "$@"; do
-		EXECUTABLE="${PROG%:*}"
-		PACKAGE="${PROG#*:}"
+}
 
-		if which "$EXECUTABLE" >/dev/null 2>&1; then
-			echo "Found program '$EXECUTABLE'" >&2
-			continue
-		fi
+check_if_program_is_absent() {
+	local EXECUTABLE="$1"
+	exit_if_which_is_absent
+	if which "$EXECUTABLE" >/dev/null 2>&1; then
+		echo "Found program '$EXECUTABLE'" >&2
+		return 1
+	else
+		echo "Could not find the program '$EXECUTABLE'" >&2
+		return 0
+	fi
+}
+
+install_if_absent() {
+	# Usage: install_if_absent cmake ninja:ninja-build
+	for PROG in "$@"; do
+		EXECUTABLE="${PROG%%:*}"
+		PACKAGE="${PROG##*:}"
+
+		check_if_program_is_absent "$EXECUTABLE" || continue
+
 		if which apt >/dev/null 2>&1; then
 			set -x
 			sudo apt install -y "$PACKAGE"

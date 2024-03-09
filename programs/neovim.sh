@@ -10,8 +10,10 @@
 set -e
 VERSION=v0.9.5
 
+. ../dotfiles/dotbase.sh
+exit_if_which_is_absent
+
 # Check if NeoVim is already installed
-which which >/dev/null
 if which nvim > /dev/null; then
 	echo "NeoVim is already installed in $(which nvim)"
 	nvim --version
@@ -19,7 +21,6 @@ if which nvim > /dev/null; then
 fi
 
 # Install dependencies
-. ../dotfiles/dotbase.sh
 install_if_absent git make cmake ninja:ninja-build gettext unzip curl gcc
 
 set -x
@@ -33,15 +34,5 @@ fi
 cd src/neovim
 git fetch
 git checkout "$VERSION"
-make CMAKE_BUILD_TYPE=Release
-sudo make install
-{ set +x; } 2>/dev/null
-cd ../..
-if [ -z $USER ]; then
-	# USER can be unset in containers
-	USER="$(whoami)"
-fi
-if [ $USER != root ]; then
-	set -x
-	find src/neovim -user root -exec sudo chown $USER:$USER '{}' ';'
-fi
+make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX="$INSTALL_PREFIX"
+make install
