@@ -1,6 +1,11 @@
 #!/bin/bash
 set -ex
 
+# Change to this script directory
+PROGRAM="$0"
+PROGDIR="${PROGRAM%/*}"
+cd "$PROGDIR"
+
 which which
 if which apt; then
 	sudo apt install -y i3 light-locker feh gitk

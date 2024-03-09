@@ -1,6 +1,11 @@
 #!/bin/bash
 set -xe
 
+# Change to this script directory
+PROGRAM="$0"
+PROGDIR="${PROGRAM%/*}"
+cd "$PROGDIR"
+
 git pull ||
 true # It is OK if this command fails
 
