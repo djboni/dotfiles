@@ -41,7 +41,11 @@ git rev-parse HEAD | grep -q "$REVISION" || {
 	echo "Invalid revision. Should be $VERSION $REVISION" >&2
 	exit 1
 }
-#
+
+if [ "x$1" = xcleanfirst ]; then
+	git clean -fdx
+fi
+
 # Build and install
 make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX="$INSTALL_PREFIX"
 make install
