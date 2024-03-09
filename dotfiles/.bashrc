@@ -154,3 +154,7 @@ if [ -f ~/.config/bash/custom_bashrc_$(hostname -s).sh ]; then
     . ~/.config/bash/custom_bashrc_$(hostname -s).sh
 fi
 
+# Source profile
+if [ -f ~/.profile ]; then
+    . ~/.profile
+fi
