@@ -10,3 +10,6 @@ cd ~/.dotfiles/programs && ./node.sh
 
 cd ~/.dotfiles/programs && ./ripgrep.sh
 ~/.local/bin/rg --version
+
+cd ~/.dotfiles/programs && ./fd.sh
+~/.local/bin/fd --version

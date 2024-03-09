@@ -15,7 +15,7 @@ if which rg > /dev/null; then
 fi
 
 # Install dependencies
-install_if_absent curl wget unzip make gcc
+install_if_absent wget
 
 set -x
 

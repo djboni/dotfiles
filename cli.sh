@@ -18,3 +18,4 @@ install_if_absent git vim tmux htop
 (set -x; cd programs && ./neovim.sh)
 (set -x; cd programs && ./node.sh)
 (set -x; cd programs && ./ripgrep.sh)
+(set -x; cd programs && ./fd.sh)

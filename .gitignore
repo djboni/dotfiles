@@ -1,5 +1,5 @@
 programs/src/
-programs/download/
+programs/downloads/
 dotfiles/.config/nvim/
 secrets/id_rsa.*.asc
 secrets/id_rsa.*.pub
