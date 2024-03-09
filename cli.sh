@@ -15,4 +15,5 @@ install_if_absent git
 
 . dotfiles/dotbase.sh
 install_if_absent vim tmux htop
+(set -x; cd programs && ./node.sh)
 (set -x; cd programs && ./neovim.sh)

@@ -4,9 +4,9 @@
 
 # Determine the installation prefix when building from source
 if [ "$(whoami)" == root ]; then
-	INSTALL_PREFIX="/usr/local"
+	INSTALL_PREFIX=/usr/local
 else
-	INSTALL_PREFIX="$HOME/.local"
+	INSTALL_PREFIX=~/.local
 fi
 
 do_backup() {
@@ -77,6 +77,7 @@ install_if_absent() {
 			case "$PACKAGE" in
 			# Ignore unavailable
 			htop|ninja-build) continue ;;
+			xz-utils) PACKAGE=xz-libs ;;
 			esac
 			set -x
 			sudo yum install -y "$PACKAGE"

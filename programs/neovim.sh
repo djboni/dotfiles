@@ -6,7 +6,7 @@
 # mkdir download
 # cd download
 # wget https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz
-# tar -zxf nvim-linux64.tar.gz --xform 's/nvim-linux64//' -C /usr/local
+# tar -zxf nvim-linux64.tar.gz --xform 's/nvim-linux64//' -C ~/.local
 set -e
 VERSION=v0.9.5
 REVISION=8744ee8783a8597f9fce4a573ae05aca2f412120
