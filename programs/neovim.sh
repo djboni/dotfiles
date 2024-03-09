@@ -9,6 +9,7 @@
 # tar -zxf nvim-linux64.tar.gz --xform 's/nvim-linux64//' -C /usr/local
 set -e
 VERSION=v0.9.5
+REVISION=8744ee8783a8597f9fce4a573ae05aca2f412120
 
 . ../dotfiles/dotbase.sh
 exit_if_which_is_absent
@@ -28,11 +29,19 @@ set -x
 # Get source code
 if [ ! -d src/neovim ]; then
 	git clone https://github.com/neovim/neovim src/neovim
+	cd src/neovim
+else
+	cd src/neovim
+	git fetch
 fi
 
-# Build and install
-cd src/neovim
-git fetch
+# Checkout and verify the revision
 git checkout "$VERSION"
+git rev-parse HEAD | grep -q "$REVISION" || {
+	echo "Invalid revision. Should be $VERSION $REVISION" >&2
+	exit 1
+}
+#
+# Build and install
 make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX="$INSTALL_PREFIX"
 make install
