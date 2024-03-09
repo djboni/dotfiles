@@ -1,15 +1,8 @@
 #!/bin/bash
-# Build and install Neovim from source code.
-#
-# If you cannot build it is possible to download the binaries and extract:
-#
-# mkdir download
-# cd download
-# wget https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz
-# tar -zxf nvim-linux64.tar.gz --xform 's/nvim-linux64//' -C ~/.local
+# Download and install Neovim.
 set -e
 VERSION=v0.9.5
-REVISION=8744ee8783a8597f9fce4a573ae05aca2f412120
+SHA256=44ee395d9b5f8a14be8ec00d3b8ead34e18fe6461e40c9c8c50e6956d643b6ca
 
 . ../dotfiles/dotbase.sh
 exit_if_which_is_absent
@@ -22,30 +15,22 @@ if which nvim > /dev/null; then
 fi
 
 # Install dependencies
-install_if_absent git make cmake ninja:ninja-build gettext unzip curl gcc
+install_if_absent curl wget unzip make gcc
 
 set -x
 
 # Get source code
-if [ ! -d src/neovim ]; then
-	git clone https://github.com/neovim/neovim src/neovim
-	cd src/neovim
-else
-	cd src/neovim
-	git fetch
+if [ ! -f "downloads/nvim-linux64-$VERSION.tar.gz" ]; then
+	mkdir -p downloads
+	wget -q "https://github.com/neovim/neovim/releases/download/$VERSION/nvim-linux64.tar.gz" -O "downloads/nvim-linux64-$VERSION.tar.gz"
 fi
 
-# Checkout and verify the revision
-git checkout "$VERSION"
-git rev-parse HEAD | grep -q "$REVISION" || {
-	echo "Invalid revision. Should be $VERSION $REVISION" >&2
+# Verify the hash
+sha256sum "downloads/nvim-linux64-$VERSION.tar.gz" | grep -q "$SHA256" || {
+	sha256sum "downloads/nvim-linux64-$VERSION.tar.gz"
+	echo "Invalid hash. Should be $VERSION $SHA256" >&2
 	exit 1
 }
 
-if [ "x$1" = xcleanfirst ]; then
-	git clean -fdx
-fi
-
-# Build and install
-make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX="$INSTALL_PREFIX"
-make install
+mkdir -p ~/.local
+tar -xf "downloads/nvim-linux64-$VERSION.tar.gz" --xform "s/nvim-linux64//" -C ~/.local

@@ -30,4 +30,3 @@ else
 	{ set +x; } 2> /dev/null
 fi
 create_link ~ .config/nvim
-mkdir -p .config/nvim/spell

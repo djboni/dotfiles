@@ -10,7 +10,7 @@ You probably should not use them as they are:
 - They may not be tested for your system and thinks ca break
 - They are made for me
 
-## Command Line Inteface
+## Command Line Interface
 
 For servers, containers, etc.
 
@@ -26,3 +26,10 @@ For workstations.
 ./cli.sh
 ./gui.sh
 ```
+
+# Issues with NeoVim
+
+clangd: failed to install, stylus: failed to install, etc.
+
+Open `nvim` and check the command `:checkhealth`.
+
