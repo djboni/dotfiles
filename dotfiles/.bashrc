@@ -137,6 +137,7 @@ alias gss='git status -s'
 alias ga='git add'
 alias gaa='git add --all; git status -s; :'
 alias gk='gitk --all & :'
+alias gl='git log -12 --oneline --graph $(git for-each-ref --format "%(refname)")'
 
 alias vi='nvim'
 alias vim='nvim'

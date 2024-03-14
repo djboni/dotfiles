@@ -9,6 +9,7 @@ cd "$PROGDIR"
 # Install utilities
 . dotfiles/dotbase.sh
 install_if_absent git vim tmux htop
+# cloc
 
 # Update to a new version
 (set -x; git pull) || true # It is OK if this command fails
