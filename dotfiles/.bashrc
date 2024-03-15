@@ -143,19 +143,23 @@ alias vi='nvim'
 alias vim='nvim'
 alias view='nvim -R'
 
-# wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-. ~/.config/bash/git-prompt.sh
-export GIT_PS1_SHOWDIRTYSTATE=1
-export GIT_PS1_STATESEPARATOR=""
-#export PS1='\w$(__git_ps1 " (%s)")\$ '
-export PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 "(%s)")\$ '
+# Show git repository branch and state in the prompt
+if [ -f ~/.config/bash/git-prompt.sh ]; then
+    # wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+    . ~/.config/bash/git-prompt.sh
+    export GIT_PS1_SHOWDIRTYSTATE=1
+    export GIT_PS1_STATESEPARATOR=""
+    #export PS1='\w$(__git_ps1 " (%s)")\$ '
+    export PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 "(%s)")\$ '
+fi
 
 # Custom bashrc
 if [ -f ~/.config/bash/custom_bashrc_$(hostname -s).sh ]; then
     . ~/.config/bash/custom_bashrc_$(hostname -s).sh
 fi
 
-# Source profile
 if [ -f ~/.profile ]; then
+    DO_NOT_INCLUDE_BASHRC_ON_PROFILE=1
     . ~/.profile
+    unset DO_NOT_INCLUDE_BASHRC_ON_PROFILE
 fi
