@@ -1,8 +1,8 @@
 #!/bin/bash
 # Download and install fd.
 set -e
-VERSION=v10.0.0
-SHA256=3177ba9c730d261d13929d77e173bccdfb6a741862445f0e67e7d9e93cc97bc3
+VERSION=v10.1.0
+SHA256=f8fa73aa005e71598c1cdbb03ae6979fd016d5a8aaf92ee84ed6f8f186c58ead
 
 . ../dotfiles/dotbase.sh
 exit_if_which_is_absent
