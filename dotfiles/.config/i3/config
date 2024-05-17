@@ -238,7 +238,9 @@ bar {
 exec ~/.config/scripts/fehbg.sh
 
 # Set screen order
-exec ~/.config/scripts/adjust_orientation.sh -H
+exec ~/.config/scripts/adjust_orientation.sh
+bindsym $mod+P exec ~/.config/scripts/adjust_orientation.sh --change
+bindsym $mod+Shift+P exec ~/.config/scripts/adjust_orientation.sh --reset
 
 # Start kdeconnect if it is installed
 #exec [ -x /usr/bin/kdeconnect-indicator ] && /usr/bin/kdeconnect-indicator
