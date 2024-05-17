@@ -1,8 +1,8 @@
 #!/bin/bash
 # Download and install Neovim.
 set -e
-VERSION=v0.9.5
-SHA256=44ee395d9b5f8a14be8ec00d3b8ead34e18fe6461e40c9c8c50e6956d643b6ca
+VERSION=v0.10.0
+SHA256=be1f0988d0de71c375982b87b86cd28d2bab35ece8285abe3b0aac57604dfc5a
 
 . ../dotfiles/dotbase.sh
 exit_if_which_is_absent
