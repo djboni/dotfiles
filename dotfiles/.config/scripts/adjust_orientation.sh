@@ -32,6 +32,9 @@ while [ $# -ne 0 ]; do
     case "$1" in
         -H|--hostname)
             case "$(hostname)" in
+                mysterion*)
+                    ORIENTATION=--right-of
+                    ;;
                 stan*)
                     ORIENTATION=--right-of
                     ;;
