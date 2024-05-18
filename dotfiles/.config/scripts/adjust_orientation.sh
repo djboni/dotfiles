@@ -2,26 +2,32 @@
 
 usage() {
     echo "\
-Usage: adjust_orientation.sh [-c]
+Usage: adjust_orientation.sh [-c] [-r]
 
-  --help|-h  display help message
 --change|-c  change the configuration
  --reset|-r  reset the configuration
+  --help|-h  display help message
 
-Description:
+With no options, this program, loads the configuration and ajdusts the screen.
 
-The configuration is read from ~/.config/scripts/adjust_orientation.cfg.
+With the option --change (or -c), changes the configuration and adjusts the
+screen. For one monitor there is only one configuration. For two monitors
+there are a few: mirror, extended, swapped extended, only screen 1, only
+screen 2.
 
-Use the option -c to change the current configuration and update the file.
+With the option --reset (or -r), resets the configuration and adjusts the
+screen.
+
+The configuration is kept in the file ~/.config/scripts/adjust_orientation.cfg.
 " >&2
 }
 
-ALL_MON="$(xrandr | grep connected | cut -d' ' -f1 | sort -u)"
+ALL_MON="$(xrandr | grep -wE '(dis)?connected' | cut -d' ' -f1 | sort -u)"
 ALL_NUM="$(echo "$ALL_MON" | wc -l)"
 ALL_MON="$(echo $ALL_MON)"
 
 #MON="$(xrandr --listmonitors | grep -E '^\s*[0-9]+:' | sed -E 's,.*\s(\S+),\1,')"
-MON="$(xrandr | grep '\sconnected' | cut -d' ' -f1 | sort -u)"
+MON="$(xrandr | grep -wE 'connected' | cut -d' ' -f1 | sort -u)"
 NUM="$(echo "$MON" | wc -l)"
 MON="$(echo $MON)"
 
@@ -64,8 +70,9 @@ CONFIG_LINE="$(grep "^$MON~" "$OPT_FILE")"
 
 # Extract the configuration
 if [ -z "$CONFIG_LINE" ]; then
-    # The configuration for these monitors does not exit yet.
-    # Use the default configuration (zero) and create the file.
+    # The configuration for these monitors does not exist yet.
+    # Use the default configuration (zero) and write it to the configuration
+    # file.
     CONFIG=0
     echo "$MON~$CONFIG" >>"$OPT_FILE"
 else
@@ -74,12 +81,10 @@ fi
 
 # Change the configuration if requested
 if [ ! -z "$OPT_CHANGE" ]; then
-    # Modes is double the number of monitors because of (2*NUM) single monitor
-    # and extended modes. Add one to the number (2*NUM+1) because of mirror
-    # mode.
+    # Number of possible modes for each number of monitors
     case "$NUM" in
-        2) MODES=5 ;; # 2x Extended + 2x Single + 1x Mirror
-        *) MODES=1 ;; # 1x Extended
+        2) MODES=5 ;; # 1x Mirror + 2x Extended + 2x Single
+        *) MODES=1 ;; # 1x Single
     esac
 
     # Reset the configuration if requested
@@ -94,25 +99,25 @@ if [ ! -z "$OPT_CHANGE" ]; then
 fi
 
 # Print the current configuration
-echo "CONFIG_LINE=$CONFIG_LINE" >&2
+echo "CONFIG_LINE=\"$CONFIG_LINE\"" >&2
 
-# 1 or ANY number of monitors
+# Default handler (for 1 monitor or ANY number of monitors)
 set_position_N() {
     set -x
     xrandr --auto
 }
 
-# 2 monitors
+# Handler for 2 monitors
 set_position_2() {
     set -x
     case "$CONFIG" in
-        # Extend screens
+        # Extend
         1) xrandr --auto && xrandr --output $1 --right-of $2 ;;
         2) xrandr --auto && xrandr --output $1 --left-of  $2 ;;
         # Single screen
         3) xrandr --auto && xrandr --output $1       --output $2 --off ;;
         4) xrandr --auto && xrandr --output $1 --off --output $2 ;;
-        # Mirror screens
+        # Mirror
         *) xrandr --auto && xrandr --output $1 --same-as $2 ;;
     esac
 }
