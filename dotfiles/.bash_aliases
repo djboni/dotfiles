@@ -1,0 +1,12 @@
+alias gs='echo "Invalid command 'gs'" >&2'
+alias gss='git status -s'
+alias ga='git add'
+alias gaa='git add --all; git status -s; :'
+alias gk='gitk --all & :'
+alias gll='git log --oneline --graph'
+alias gla='gll $(git for-each-ref --format "%(refname)")'
+alias gl='gll -12'
+
+alias vi='nvim'
+alias vim='nvim'
+alias view='nvim -R'

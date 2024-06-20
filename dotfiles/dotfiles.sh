@@ -5,6 +5,7 @@ set -e
 
 # Files
 create_link ~ .bashrc
+create_link ~ .bash_aliases
 create_link ~ .gitconfig
 create_link ~ .profile
 create_link ~ .tmux.conf
