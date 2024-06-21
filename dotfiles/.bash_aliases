@@ -4,7 +4,7 @@ alias ga='git add'
 alias gaa='git add --all; git status -s; :'
 alias gk='gitk --all & :'
 alias gll='git log --oneline --graph'
-alias gla='gll $(git for-each-ref --format "%(refname)")'
+alias gla='gll $(git for-each-ref --format "%(refname)") $(git stash list --format="%h")'
 alias gl='gll -12'
 
 alias vi='nvim'
