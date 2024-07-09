@@ -1,8 +1,8 @@
 #!/bin/bash
 # Download and install Node and NPM.
 set -e
-VERSION=v20.15.0
-SHA256=4f57f7828e6adb9f6bc77932f10e316cca68b0f160c82b21d9a2c7647c7f10bf
+VERSION=v20.15.1
+SHA256=26700f8d3e78112ad4a2618a9c8e2816e38a49ecf0213ece80e54c38cb02563f
 
 . ../dotfiles/dotbase.sh
 exit_if_which_is_absent
