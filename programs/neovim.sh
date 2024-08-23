@@ -1,8 +1,15 @@
 #!/bin/bash
 # Download and install Neovim.
 set -e
-VERSION=v0.10.1
-SHA256=4867de01a17f6083f902f8aa5215b40b0ed3a36e83cc0293de3f11708f1f9793
+if ldd --version | grep -qE 'ldd .* 2\.2[0-8]'; then
+	# Older glibc (2.28-)
+	VERSION=v0.9.5
+	SHA256=44ee395d9b5f8a14be8ec00d3b8ead34e18fe6461e40c9c8c50e6956d643b6ca
+else
+	# Newer glibc (2.29+)
+	VERSION=v0.10.1
+	SHA256=4867de01a17f6083f902f8aa5215b40b0ed3a36e83cc0293de3f11708f1f9793
+fi
 
 . ../dotfiles/dotbase.sh
 exit_if_which_is_absent

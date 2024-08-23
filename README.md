@@ -29,7 +29,8 @@ For workstations.
 
 # Issues with NeoVim
 
-clangd: failed to install, stylus: failed to install, etc.
-
-Open `nvim` and check the command `:checkhealth`.
-
+- clangd: failed to install, stylus: failed to install, etc.
+  - Open `nvim` and check the command `:checkhealth`.
+- nvim: /lib64/libm.so.6: version `GLIBC_2.29' not found (required by nvim)
+  - NeoVim v0.10.0+ needs glibc 2.29+
+  - For older distros install NeoVim v0.9.5
