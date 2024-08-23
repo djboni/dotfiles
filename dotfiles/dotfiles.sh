@@ -27,7 +27,14 @@ if [ -d .config/nvim ]; then
 	cd ../..
 else
 	set -x
-	git clone https://github.com/djboni/kickstart.nvim .config/nvim
+	if ldd --version | grep -qE 'ldd .* 2\.2[0-8]'; then
+		# Older glibc (2.28-)
+		BRANCH=glibc-2.28
+	else
+		# Newer glibc (2.29+)
+		BRANCH=master
+	fi
+	git clone --branch "$BRANCH" https://github.com/djboni/kickstart.nvim .config/nvim
 	{ set +x; } 2> /dev/null
 fi
 create_link ~ .config/nvim
