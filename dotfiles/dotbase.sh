@@ -86,6 +86,13 @@ install_if_absent() {
 			set -x
 			yes | sudo pacman -Sy "$PACKAGE"
 			{ set +x; } 2> /dev/null
+		elif which apk >/dev/null 2>&1; then
+			case "$PACKAGE" in
+			xz-utils) PACKAGE=xz ;;
+			esac
+			set -x
+			apk add "$PACKAGE"
+			{ set +x; } 2> /dev/null
 		fi
 	done
 }
