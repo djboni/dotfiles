@@ -82,6 +82,10 @@ install_if_absent() {
 			set -x
 			sudo yum install -y "$PACKAGE"
 			{ set +x; } 2> /dev/null
+		elif which pacman >/dev/null 2>&1; then
+			set -x
+			yes | sudo pacman -Sy "$PACKAGE"
+			{ set +x; } 2> /dev/null
 		fi
 	done
 }
