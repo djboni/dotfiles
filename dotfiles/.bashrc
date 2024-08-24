@@ -142,7 +142,7 @@ if [ -f ~/.config/bash/git-prompt.sh ]; then
 fi
 
 # Custom bashrc
-if [ -f ~/.config/bash/custom_bashrc_$(hostname -s).sh ]; then
+if which hostname >/dev/null 2>&1 && [ -f ~/.config/bash/custom_bashrc_$(hostname -s).sh ]; then
     . ~/.config/bash/custom_bashrc_$(hostname -s).sh
 fi
 
