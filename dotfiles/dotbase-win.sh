@@ -32,7 +32,7 @@ create_link() {
 	do_backup "$DEST/$FILE"
 	set -x
 	# NOTE: Windows use copy instead of link
-	cp "$PWD/$FILE" "$DEST/$FILE"
+	cp -r "$PWD/$FILE" "$DEST/$FILE"
 	{ set +x; } 2> /dev/null
 }
 

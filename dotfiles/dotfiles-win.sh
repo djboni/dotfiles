@@ -9,6 +9,10 @@ create_link ~ .bash_aliases
 create_link ~ .gitconfig
 create_link ~ .profile
 
+# Directories
+mkdir -p ~/.config
+create_link ~ .config/bash
+
 # Clone/update NeoVim configuration
 NVIM_CONFIG_DIR="$LOCALAPPDATA/nvim"
 if [ -d "$NVIM_CONFIG_DIR" ]; then
