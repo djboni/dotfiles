@@ -142,8 +142,14 @@ if [ -f ~/.config/bash/git-prompt.sh ]; then
 fi
 
 # Custom bashrc
-if which hostname >/dev/null 2>&1 && [ -f ~/.config/bash/custom_bashrc_$(hostname -s).sh ]; then
-    . ~/.config/bash/custom_bashrc_$(hostname -s).sh
+if [ "$OS" = "Windows_NT" ]; then
+    if [ -f ~/.config/bash/custom_bashrc_$(hostname).sh ]; then
+	. ~/.config/bash/custom_bashrc_$(hostname).sh
+    fi
+elif which hostname >/dev/null 2>&1; then
+    if [ -f ~/.config/bash/custom_bashrc_$(hostname -s).sh ]; then
+	. ~/.config/bash/custom_bashrc_$(hostname -s).sh
+    fi
 fi
 
 if [ -f ~/.profile ]; then

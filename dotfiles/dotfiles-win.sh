@@ -1,25 +1,16 @@
 #!/bin/bash
 set -e
 # Source the base file
-. dotbase.sh
+. dotbase-win.sh
 
 # Files
 create_link ~ .bashrc
 create_link ~ .bash_aliases
 create_link ~ .gitconfig
 create_link ~ .profile
-create_link ~ .tmux.conf
-create_link ~ .xinitrc
-
-# Directories
-mkdir -p ~/.config
-create_link ~ .config/bash
-create_link ~ .config/i3
-create_link ~ .config/i3status
-create_link ~ .config/scripts
 
 # Clone/update NeoVim configuration
-NVIM_CONFIG_DIR="$HOME/.config/nvim"
+NVIM_CONFIG_DIR="$LOCALAPPDATA/nvim"
 if [ -d "$NVIM_CONFIG_DIR" ]; then
 	set -x
 	cd "$NVIM_CONFIG_DIR"
@@ -28,13 +19,8 @@ if [ -d "$NVIM_CONFIG_DIR" ]; then
 	cd ../..
 else
 	set -x
-	if ldd --version | grep -qE 'ldd .* 2\.2[0-8]'; then
-		# Older glibc (2.28-)
-		BRANCH=glibc-2.28
-	else
-		# Newer glibc (2.29+)
-		BRANCH=master
-	fi
+	# Newer glibc (2.29+)
+	BRANCH=master
 	git clone --branch "$BRANCH" https://github.com/djboni/kickstart.nvim "$NVIM_CONFIG_DIR"
 	{ set +x; } 2> /dev/null
 fi
