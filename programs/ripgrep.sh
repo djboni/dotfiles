@@ -6,6 +6,7 @@ SHA256=f84757b07f425fe5cf11d87df6644691c644a5cd2348a2c670894272999d3ba7
 
 . ../dotfiles/dotbase.sh
 exit_if_which_is_absent
+install_if_absent wget
 
 # Check if ripgrep is already installed
 if which rg > /dev/null; then
@@ -13,9 +14,6 @@ if which rg > /dev/null; then
 	rg --version
 	exit 0
 fi
-
-# Install dependencies
-install_if_absent wget
 
 set -x
 

@@ -13,6 +13,7 @@ fi
 
 . ../dotfiles/dotbase.sh
 exit_if_which_is_absent
+install_if_absent curl wget unzip make gcc
 
 # Check if NeoVim is already installed
 if which nvim > /dev/null; then
@@ -20,9 +21,6 @@ if which nvim > /dev/null; then
 	nvim --version
 	exit 0
 fi
-
-# Install dependencies
-install_if_absent curl wget unzip make gcc
 
 set -x
 
