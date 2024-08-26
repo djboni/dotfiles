@@ -39,5 +39,5 @@ sha256sum "downloads/nvim-linux64-$VERSION.tar.gz" | grep -q "$SHA256" || {
 	exit 1
 }
 
-mkdir -p ~/.local
+mkdir -p ~/.local/bin
 tar -xf "downloads/nvim-linux64-$VERSION.tar.gz" --strip-components 1 -C ~/.local

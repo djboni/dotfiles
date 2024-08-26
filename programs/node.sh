@@ -32,7 +32,7 @@ sha256sum "downloads/node-$VERSION-linux-x64.tar.xz" | grep -q "$SHA256" || {
 	exit 1
 }
 
-mkdir -p ~/.local
+mkdir -p ~/.local/bin
 tar -xf "downloads/node-$VERSION-linux-x64.tar.xz"
 tar -cC node-$VERSION-linux-x64 bin include lib share | tar -xC ~/.local
 rm -fr node-$VERSION-linux-x64

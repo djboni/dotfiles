@@ -32,7 +32,7 @@ sha256sum "downloads/ripgrep-$VERSION-x86_64-unknown-linux-musl.tar.gz" | grep -
 	exit 1
 }
 
-mkdir -p ~/.local
+mkdir -p ~/.local/bin
 tar -xf "downloads/ripgrep-$VERSION-x86_64-unknown-linux-musl.tar.gz"
-mv ripgrep-$VERSION-x86_64-unknown-linux-musl/rg ~/.local/bin
+mv ripgrep-$VERSION-x86_64-unknown-linux-musl/rg ~/.local/bin/
 rm -fr ripgrep-$VERSION-x86_64-unknown-linux-musl

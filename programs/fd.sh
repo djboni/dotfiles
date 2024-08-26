@@ -32,7 +32,7 @@ sha256sum "downloads/fd-$VERSION-x86_64-unknown-linux-musl.tar.gz" | grep -q "$S
 	exit 1
 }
 
-mkdir -p ~/.local
+mkdir -p ~/.local/bin
 tar -xf "downloads/fd-$VERSION-x86_64-unknown-linux-musl.tar.gz"
-mv fd-$VERSION-x86_64-unknown-linux-musl/fd ~/.local/bin
+mv fd-$VERSION-x86_64-unknown-linux-musl/fd ~/.local/bin/
 rm -fr fd-$VERSION-x86_64-unknown-linux-musl
