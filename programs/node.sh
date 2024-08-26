@@ -6,7 +6,7 @@ SHA256=a24db3dcd151a52e75965dba04cf1b3cd579ff30d6e0af9da1aede4d0f17486b
 
 . ../dotfiles/dotbase.sh
 exit_if_which_is_absent
-install_if_absent wget xz:xz-utils
+install_if_absent wget xz
 
 # Check if Node is already installed
 if which node > /dev/null; then

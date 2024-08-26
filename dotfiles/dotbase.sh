@@ -62,34 +62,39 @@ check_if_program_is_absent() {
 }
 
 install_if_absent() {
-	# Usage: install_if_absent cmake ninja:ninja-build
-	for PROG in "$@"; do
-		EXECUTABLE="${PROG%%:*}"
-		PACKAGE="${PROG##*:}"
-
+	# Usage: install_if_absent cmake ninja
+	for EXECUTABLE in "$@"; do
+		PACKAGE="$EXECUTABLE"
 		check_if_program_is_absent "$EXECUTABLE" || continue
 
 		if which apt >/dev/null 2>&1; then
+			# Debian, Ubuntu
+			case "$PACKAGE" in
+				xz) PACKAGE=xz-utils ;;
+			esac
 			set -x
 			sudo apt install -y "$PACKAGE"
 			{ set +x; } 2> /dev/null
 		elif which yum >/dev/null 2>&1; then
+			# RHEL, Alma, Rocky
 			case "$PACKAGE" in
-			# Ignore unavailable
-			htop|ninja-build) continue ;;
-			xz-utils) PACKAGE=xz-libs ;;
+				# Ignore unavailable
+				htop|ninja-build) continue ;;
+				xz) PACKAGE=xz-libs ;;
 			esac
 			set -x
 			sudo yum install -y "$PACKAGE"
 			{ set +x; } 2> /dev/null
 		elif which pacman >/dev/null 2>&1; then
+			# Arch
+			case "$PACKAGE" in
+				xz) PACKAGE=xz-utils ;;
+			esac
 			set -x
 			yes | sudo pacman -Sy "$PACKAGE"
 			{ set +x; } 2> /dev/null
 		elif which apk >/dev/null 2>&1; then
-			case "$PACKAGE" in
-			xz-utils) PACKAGE=xz ;;
-			esac
+			# Alpine
 			set -x
 			apk add "$PACKAGE"
 			{ set +x; } 2> /dev/null
