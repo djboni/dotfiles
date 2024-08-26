@@ -1,6 +1,16 @@
 #!/bin/bash
 set -e
 
+UNAME="$(uname)"
+case "$UNAME" in
+	Linux*) ;;
+	*)
+		echo "This command is only for Linux" >&2
+		echo "uname: $UNAME" >&2
+		exit 1
+		;;
+esac
+
 # Change to this script directory
 PROGRAM="$0"
 PROGDIR="${PROGRAM%/*}"
