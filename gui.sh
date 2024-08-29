@@ -28,3 +28,12 @@ if [ ! -d ~/.config/wallpapers ]; then
 	git clone https://gitlab.com/dtos/dtos-backgrounds.git ~/.config/wallpapers ||
 	true # It is OK if this command fails
 fi
+
+# If Firefox is not ESR version, remove and install the ESR version
+if ! firefox --version | grep -i esr; then
+	if which firefox | grep snap; then
+		# Firefox is installed with snap (Ubuntu)
+		sudo snap remove firefox &&
+		sudo snap install firefox --channel=esr/stable
+	fi
+fi
