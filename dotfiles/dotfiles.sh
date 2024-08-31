@@ -30,7 +30,7 @@ else
 	set -x
 	if ldd --version | grep -qE 'ldd .* 2\.2[0-8]'; then
 		# Older glibc (2.28-)
-		BRANCH=glibc-2.28
+		BRANCH=nvim-0.9
 	else
 		# Newer glibc (2.29+)
 		BRANCH=master

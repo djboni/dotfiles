@@ -3,7 +3,7 @@
     name = Djones A. Boni
     email = djboni@gmail.com
 [core]
-    editor = vi
+    editor = nvim
 [init]
     defaultBranch = master
 [pull]
