@@ -46,6 +46,14 @@ On Windows install the applications below and clone the configuration repository
 git clone https://github.com/djboni/kickstart.nvim %LocalAppData%/nvim
 ```
 
+## Reset NeoVim Configuration
+
+```sh
+rm -fr ~/.local/share/nvim
+rm -fr ~/.local/state/nvim
+rm -fr ~/.config/nvim
+```
+
 ## Issues with NeoVim
 
 - zls: failed to install, etc
