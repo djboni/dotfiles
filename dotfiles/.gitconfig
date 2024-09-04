@@ -8,5 +8,12 @@
     defaultBranch = master
 [pull]
     ff = only
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = nvim -d $LOCAL $REMOTE -c 'wincmd w' -c 'wincmd L'
 [merge]
-    conflictStyle = diff3
+    #conflictStyle = diff3
+    tool = nvimdiff4
+[mergetool "nvimdiff4"]
+    cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
