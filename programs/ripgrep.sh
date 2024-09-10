@@ -1,8 +1,8 @@
 #!/bin/bash
 # Download and install ripgrep.
 set -e
-VERSION=14.1.0
-SHA256=f84757b07f425fe5cf11d87df6644691c644a5cd2348a2c670894272999d3ba7
+VERSION=14.1.1
+SHA256=4cf9f2741e6c465ffdb7c26f38056a59e2a2544b51f7cc128ef28337eeae4d8e
 
 . ../dotfiles/dotbase.sh
 exit_if_which_is_absent
