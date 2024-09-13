@@ -10,7 +10,7 @@ if [ -d "$NVIM_CONFIG_DIR" ]; then
 	cd "$NVIM_CONFIG_DIR"
 	git pull || true # It is OK if this command fails
 	{ set +x; } 2> /dev/null
-	cd ../..
+	cd -
 else
 	set -x
 	# Newer glibc (2.29+)
