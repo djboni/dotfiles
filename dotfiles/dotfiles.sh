@@ -10,6 +10,7 @@ create_link ~ .gitconfig
 create_link ~ .profile
 create_link ~ .tmux.conf
 create_link ~ .xinitrc
+create_link ~ .vimrc
 
 # Directories
 mkdir -p ~/.config

@@ -8,6 +8,7 @@ create_link ~ .bashrc
 create_link ~ .bash_aliases
 create_link ~ .gitconfig
 create_link ~ .profile
+create_link ~ .vimrc
 
 # Directories
 mkdir -p ~/.config
