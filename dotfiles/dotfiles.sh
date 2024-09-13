@@ -3,22 +3,6 @@ set -e
 # Source the base file
 . dotbase.sh
 
-# Files
-create_link ~ .bashrc
-create_link ~ .bash_aliases
-create_link ~ .gitconfig
-create_link ~ .profile
-create_link ~ .tmux.conf
-create_link ~ .xinitrc
-create_link ~ .vimrc
-
-# Directories
-mkdir -p ~/.config
-create_link ~ .config/bash
-create_link ~ .config/i3
-create_link ~ .config/i3status
-create_link ~ .config/scripts
-
 # Clone/update NeoVim configuration
 NVIM_CONFIG_DIR="$HOME/.config/nvim"
 if [ -d "$NVIM_CONFIG_DIR" ]; then
@@ -39,3 +23,19 @@ else
 	git clone --branch "$BRANCH" https://github.com/djboni/kickstart.nvim "$NVIM_CONFIG_DIR"
 	{ set +x; } 2> /dev/null
 fi
+
+# Files
+create_link ~ .bashrc
+create_link ~ .bash_aliases
+create_link ~ .gitconfig
+create_link ~ .profile
+create_link ~ .tmux.conf
+create_link ~ .xinitrc
+create_link ~ .vimrc
+
+# Directories
+mkdir -p ~/.config
+create_link ~ .config/bash
+create_link ~ .config/i3
+create_link ~ .config/i3status
+create_link ~ .config/scripts

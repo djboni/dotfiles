@@ -4,8 +4,12 @@ set -e
 UNAME="$(uname)"
 case "$UNAME" in
 	Linux*) ;;
+	MINGW64_NT*)
+		./win-cli.sh
+		exit $?
+		;;
 	*)
-		echo "This command is only for Linux" >&2
+		echo "This command is not supported by this platform" >&2
 		echo "uname: $UNAME" >&2
 		exit 1
 		;;
