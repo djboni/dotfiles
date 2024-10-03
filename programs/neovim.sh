@@ -7,8 +7,8 @@ if ldd --version | grep -qE 'ldd .* 2\.2[0-8]'; then
 	SHA256=44ee395d9b5f8a14be8ec00d3b8ead34e18fe6461e40c9c8c50e6956d643b6ca
 else
 	# Newer glibc (2.29+)
-	VERSION=v0.10.1
-	SHA256=4867de01a17f6083f902f8aa5215b40b0ed3a36e83cc0293de3f11708f1f9793
+	VERSION=v0.10.2
+	SHA256=9f696e635d503b844e4e78e88a22bcf512a78f288bf471379afc3d0004e15217
 fi
 
 . ../dotfiles/dotbase.sh
@@ -16,7 +16,7 @@ exit_if_which_is_absent
 install_if_absent curl wget unzip make gcc
 
 # Check if NeoVim is already installed
-if which nvim > /dev/null; then
+if which nvim >/dev/null; then
 	echo "NeoVim is already installed in $(which nvim)"
 	nvim --version
 	exit 0
