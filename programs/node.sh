@@ -1,15 +1,15 @@
 #!/bin/bash
 # Download and install Node and NPM.
 set -e
-VERSION=v20.17.0
-SHA256=a24db3dcd151a52e75965dba04cf1b3cd579ff30d6e0af9da1aede4d0f17486b
+VERSION=v20.18.0
+SHA256=4543670b589593f8fa5f106111fd5139081da42bb165a9239f05195e405f240a
 
 . ../dotfiles/dotbase.sh
 exit_if_which_is_absent
 install_if_absent wget xz
 
 # Check if Node is already installed
-if which node > /dev/null; then
+if which node >/dev/null; then
 	echo "Node is already installed in $(which node)"
 	node --version
 	exit 0
