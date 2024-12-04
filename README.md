@@ -65,3 +65,42 @@ rm -fr ~/.config/nvim
 - nvim: /lib64/libm.so.6: version `GLIBC_2.29' not found (required by nvim)
   - NeoVim v0.10.0+ needs glibc 2.29+
   - For older distros install NeoVim v0.9.5
+
+# KDE Plasma + i3
+
+Tested with Ubuntu 22.04 and Ubuntu 24.04.
+
+Links:
+- [KDE Desktop installation on Ubuntu 24.04](https://linuxconfig.org/kde-desktop-installation-on-ubuntu-24-04)
+- [i3 and KDE Plasma](https://github.com/heckelson/i3-and-kde-plasma)
+
+```sh
+sudo apt update
+sudo apt install -y kde-full i3 feh dmenu git
+git clone https://gitlab.com/dtos/dtos-backgrounds.git ~/.config/wallpapers/
+
+# Plasma < 5.25 (Ubuntu 22.04)
+sudo tee /usr/share/xsessions/plasma-i3.desktop <<EOF
+[Desktop Entry]
+Type=XSession
+Exec=env KDEWM=/usr/bin/i3 /usr/bin/startplasma-x11
+DesktopNames=KDE
+Name=Plasma with i3
+Comment=Plasma with i3
+EOF
+
+# Plasma >= 5.25 (Ubuntu 24.04)
+mkdir -p ~/.config/systemd/user/
+tee ~/.config/systemd/user/plasma-i3.service <<EOF
+[Unit]
+Description=Launch Plasma with i3
+Before=plasma-workspace.target
+[Service]
+ExecStart=/usr/bin/i3
+Restart=on-failure
+[Install]
+WantedBy=plasma-workspace.target
+EOF
+systemctl mask plasma-kwin_x11.service --user
+systemctl enable plasma-i3 --user
+```
