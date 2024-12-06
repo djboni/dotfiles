@@ -77,6 +77,7 @@ Links:
 ```sh
 sudo apt update
 sudo apt install -y kde-full i3 feh dmenu git
+sudo apt remove pasystray blueman network-manager-gnome
 git clone https://gitlab.com/dtos/dtos-backgrounds.git ~/.config/wallpapers/
 
 # Plasma < 5.25 (Ubuntu 22.04)
