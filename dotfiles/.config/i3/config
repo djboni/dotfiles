@@ -237,13 +237,16 @@ bar {
     status_command LC_ALL=C.UTF-8 i3status
 }
 
-# Set a cool background
-exec ~/.config/scripts/fehbg.sh
+# Screen configuration and background
+exec ~/.config/scripts/screen.sh; ~/.config/scripts/fehbg.sh
 
-# Set screen order
-exec ~/.config/scripts/screen.sh
-bindsym $mod+P exec ~/.config/scripts/screen.sh --change
-bindsym $mod+Shift+P exec ~/.config/scripts/screen.sh --force-mirror --change
+# Screen configuration
+bindsym $mod+P exec ~/.config/scripts/screen.sh
+bindsym $mod+Shift+P exec ~/.config/scripts/screen.sh --change
+bindsym $mod+Shift+M exec ~/.config/scripts/screen.sh --force-mirror --change
+
+# Background
+bindsym $mod+Shift+B exec ~/.config/scripts/fehbg.sh
 
 # Start kdeconnect if it is installed
 #exec [ -x /usr/bin/kdeconnect-indicator ] && /usr/bin/kdeconnect-indicator
@@ -259,7 +262,7 @@ bindsym $mod+x move container to output next
 # Move the current workspace to the next output
 bindsym $mod+Shift+x move workspace to output next
 
-# Disable touchpad
+# Disable/enable touchpad
 bindsym $mod+t exec xinput --disable "$(xinput | grep -Ei 'Touchpad|Synaptics s3203' | sed -E 's/.*id=([0-9]+).*/\1/')"
 bindsym $mod+Shift+t exec xinput --enable "$(xinput | grep -Ei 'Touchpad|Synaptics s3203' | sed -E 's/.*id=([0-9]+).*/\1/')"
 

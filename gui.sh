@@ -3,12 +3,12 @@ set -e
 
 UNAME="$(uname)"
 case "$UNAME" in
-	Linux) ;;
-	*)
-		echo "This command is only for Linux" >&2
-		echo "uname: $UNAME" >&2
-		exit 1
-		;;
+Linux) ;;
+*)
+	echo "This command is only for Linux" >&2
+	echo "uname: $UNAME" >&2
+	exit 1
+	;;
 esac
 
 # Change to this script directory
@@ -19,21 +19,21 @@ cd "$PROGDIR"
 set -x
 which which
 if which apt; then
-	sudo apt install -y i3 light-locker feh gitk
+	sudo apt install -y i3 light-locker feh blueman pasystray arandr git gitk
 elif which yum; then
-	sudo yum install -y gitk
+	sudo yum install -y git gitk
 fi
 
 if [ ! -d ~/.config/wallpapers ]; then
 	git clone https://gitlab.com/dtos/dtos-backgrounds.git ~/.config/wallpapers ||
-	true # It is OK if this command fails
+		true # It is OK if this command fails
 fi
 
 # If Firefox is not ESR version, remove and install the ESR version
 if ! firefox --version | grep -i esr; then
-	if which firefox | grep snap; then
+	if snap list | grep firefox; then
 		# Firefox is installed with snap (Ubuntu)
 		sudo snap remove firefox &&
-		sudo snap install firefox --channel=esr/stable
+			sudo snap install firefox --channel=esr/stable
 	fi
 fi
