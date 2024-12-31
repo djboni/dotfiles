@@ -7,8 +7,8 @@ if ldd --version | grep -qE 'ldd .* 2\.2[0-8]'; then
 	SHA256=44ee395d9b5f8a14be8ec00d3b8ead34e18fe6461e40c9c8c50e6956d643b6ca
 else
 	# Newer glibc (2.29+)
-	VERSION=v0.10.2
-	SHA256=9f696e635d503b844e4e78e88a22bcf512a78f288bf471379afc3d0004e15217
+	VERSION=v0.10.3
+	SHA256=be189915a2a0da3615576e2db06a7c714aef0ae926b4da6107e589a3cc623e5c
 fi
 
 . ../dotfiles/dotbase.sh
