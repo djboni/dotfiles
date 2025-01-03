@@ -4,11 +4,27 @@ set -e
 VERSION=v10.2.0
 SHA256=d9bfa25ec28624545c222992e1b00673b7c9ca5eb15393c40369f10b28f9c932
 
+usage() {
+	EXIT_STATUS="$1"
+	echo "Usage: ${0##*/} [-hf]"
+	exit "$EXIT_STATUS"
+}
+
+OPT_FORCE=n
+while [ $# -ne 0 ]; do
+	case "$1" in
+		-f) OPT_FORCE=y ;;
+		-h) usage 0 ;;
+		*) usage 1 ;;
+	esac
+	shift
+done
+
 . ../dotfiles/dotbase.sh
 install_if_absent wget
 
 # Check if fd is already installed
-if command -v fd > /dev/null; then
+if [ "$OPT_FORCE" != "y" ] && command -v fd > /dev/null; then
 	echo "fd is already installed in $(command -v fd)"
 	fd --version
 	exit 0

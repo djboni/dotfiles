@@ -4,16 +4,32 @@ set -e
 VERSION=v3.3.0
 SHA256=2d83782a350b604bfa70fce880604a41a7f77c3eec8f922f9cdc3c20952ddbe4
 
+usage() {
+	EXIT_STATUS="$1"
+	echo "Usage: ${0##*/} [-hf]"
+	exit "$EXIT_STATUS"
+}
+
+OPT_FORCE=n
+while [ $# -ne 0 ]; do
+	case "$1" in
+		-f) OPT_FORCE=y ;;
+		-h) usage 0 ;;
+		*) usage 1 ;;
+	esac
+	shift
+done
+
 . ../dotfiles/dotbase.sh
 install_if_absent wget unzip
 
-set -x
-
 # Check if already installed
-if [ -f ~/.local/share/fonts/JetBrainsMonoNerdFont-Regular.ttf ]; then
+if [ "$OPT_FORCE" != "y" ] && [ -f ~/.local/share/fonts/JetBrainsMonoNerdFont-Regular.ttf ]; then
 	echo "Already installed"
 	exit 0
 fi
+
+set -x
 
 # Get file
 if [ ! -f "downloads/JetBrainsMono-$VERSION.zip" ]; then

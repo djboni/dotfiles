@@ -4,11 +4,27 @@ set -e
 VERSION=14.1.1
 SHA256=4cf9f2741e6c465ffdb7c26f38056a59e2a2544b51f7cc128ef28337eeae4d8e
 
+usage() {
+	EXIT_STATUS="$1"
+	echo "Usage: ${0##*/} [-hf]"
+	exit "$EXIT_STATUS"
+}
+
+OPT_FORCE=n
+while [ $# -ne 0 ]; do
+	case "$1" in
+		-f) OPT_FORCE=y ;;
+		-h) usage 0 ;;
+		*) usage 1 ;;
+	esac
+	shift
+done
+
 . ../dotfiles/dotbase.sh
 install_if_absent wget
 
 # Check if ripgrep is already installed
-if command -v rg > /dev/null; then
+if [ "$OPT_FORCE" != "y" ] && command -v rg > /dev/null; then
 	echo "ripgrep is already installed in $(command -v rg)"
 	rg --version
 	exit 0

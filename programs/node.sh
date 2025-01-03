@@ -4,11 +4,27 @@ set -e
 VERSION=v20.18.1
 SHA256=c6fa75c841cbffac851678a472f2a5bd612fff8308ef39236190e1f8dbb0e567
 
+usage() {
+	EXIT_STATUS="$1"
+	echo "Usage: ${0##*/} [-hf]"
+	exit "$EXIT_STATUS"
+}
+
+OPT_FORCE=n
+while [ $# -ne 0 ]; do
+	case "$1" in
+		-f) OPT_FORCE=y ;;
+		-h) usage 0 ;;
+		*) usage 1 ;;
+	esac
+	shift
+done
+
 . ../dotfiles/dotbase.sh
 install_if_absent wget xz
 
 # Check if Node is already installed
-if command -v node >/dev/null; then
+if [ "$OPT_FORCE" != "y" ] && command -v node >/dev/null; then
 	echo "Node is already installed in $(command -v node)"
 	node --version
 	exit 0
