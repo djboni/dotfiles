@@ -17,10 +17,9 @@ PROGDIR="${PROGRAM%/*}"
 cd "$PROGDIR"
 
 set -x
-which which
-if which apt; then
+if command -v apt; then
 	sudo apt install -y i3 light-locker feh blueman pasystray arandr git gitk
-elif which yum; then
+elif command -v yum; then
 	sudo yum install -y git gitk
 fi
 

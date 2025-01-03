@@ -37,22 +37,9 @@ create_link() {
 	{ set +x; } 2> /dev/null
 }
 
-exit_if_which_is_absent() {
-	if [ ! -z $WHICH_PRESENT ]; then
-		:
-	elif which which >/dev/null 2>&1; then
-		echo "Found program 'which'" >&2
-		WHICH_PRESENT=1
-	else
-		echo "Could not find the program 'which'" >&2
-		exit 1
-	fi
-}
-
 check_if_program_is_absent() {
 	local EXECUTABLE="$1"
-	exit_if_which_is_absent
-	if which "$EXECUTABLE" >/dev/null 2>&1; then
+	if command -v "$EXECUTABLE" >/dev/null 2>&1; then
 		echo "Found program '$EXECUTABLE'" >&2
 		return 1
 	else
@@ -67,7 +54,7 @@ install_if_absent() {
 		PACKAGE="$EXECUTABLE"
 		check_if_program_is_absent "$EXECUTABLE" || continue
 
-		if which apt >/dev/null 2>&1; then
+		if command -v apt >/dev/null 2>&1; then
 			# Debian, Ubuntu
 			case "$PACKAGE" in
 				xz) PACKAGE=xz-utils ;;
@@ -75,7 +62,7 @@ install_if_absent() {
 			set -x
 			sudo apt install -y "$PACKAGE"
 			{ set +x; } 2> /dev/null
-		elif which yum >/dev/null 2>&1; then
+		elif command -v yum >/dev/null 2>&1; then
 			# RHEL, Alma, Rocky
 			case "$PACKAGE" in
 				# Ignore unavailable
@@ -85,7 +72,7 @@ install_if_absent() {
 			set -x
 			sudo yum install -y "$PACKAGE"
 			{ set +x; } 2> /dev/null
-		elif which pacman >/dev/null 2>&1; then
+		elif command -v pacman >/dev/null 2>&1; then
 			# Arch
 			case "$PACKAGE" in
 				xz) PACKAGE=xz-utils ;;
@@ -93,7 +80,7 @@ install_if_absent() {
 			set -x
 			yes | sudo pacman -Sy "$PACKAGE"
 			{ set +x; } 2> /dev/null
-		elif which apk >/dev/null 2>&1; then
+		elif command -v apk >/dev/null 2>&1; then
 			# Alpine
 			set -x
 			apk add "$PACKAGE"

@@ -5,12 +5,11 @@ VERSION=v20.18.1
 SHA256=c6fa75c841cbffac851678a472f2a5bd612fff8308ef39236190e1f8dbb0e567
 
 . ../dotfiles/dotbase.sh
-exit_if_which_is_absent
 install_if_absent wget xz
 
 # Check if Node is already installed
-if which node >/dev/null; then
-	echo "Node is already installed in $(which node)"
+if command -v node >/dev/null; then
+	echo "Node is already installed in $(command -v node)"
 	node --version
 	exit 0
 fi

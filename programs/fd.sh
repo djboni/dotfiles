@@ -5,12 +5,11 @@ VERSION=v10.2.0
 SHA256=d9bfa25ec28624545c222992e1b00673b7c9ca5eb15393c40369f10b28f9c932
 
 . ../dotfiles/dotbase.sh
-exit_if_which_is_absent
 install_if_absent wget
 
 # Check if fd is already installed
-if which fd > /dev/null; then
-	echo "fd is already installed in $(which fd)"
+if command -v fd > /dev/null; then
+	echo "fd is already installed in $(command -v fd)"
 	fd --version
 	exit 0
 fi

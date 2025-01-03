@@ -30,7 +30,7 @@ For workstations.
 # NeoVim
 
 On Linux install `sudo` and `git` then run `./cli.sh`, which takes care of the
-rest. Some distros also need you to install `which`, `xz`, and `bash`.
+rest. Some distros also need you to install `xz`, and `bash`.
 
 On Windows install the applications below and clone the configuration repository.
 

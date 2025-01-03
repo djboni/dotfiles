@@ -12,12 +12,11 @@ else
 fi
 
 . ../dotfiles/dotbase.sh
-exit_if_which_is_absent
 install_if_absent curl wget unzip make gcc
 
 # Check if NeoVim is already installed
-if which nvim >/dev/null; then
-	echo "NeoVim is already installed in $(which nvim)"
+if command -v nvim >/dev/null; then
+	echo "NeoVim is already installed in $(command -v nvim)"
 	nvim --version
 	exit 0
 fi

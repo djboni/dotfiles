@@ -8,7 +8,7 @@ alias gla='gll $(git for-each-ref --format "%(refname)") $(git stash list --form
 alias gl='gll -12'
 
 if [ "$OS" = "Windows_NT" ] && [ "$TERM_PROGRAM" = "mintty" ]; then
-    if which nvim >/dev/null 2>&1; then
+    if command -v nvim >/dev/null 2>&1; then
         # NOTE: In this case the color scheme is weird (Windows, Git-Bash, running NeoVim)
         alias vi='winpty nvim'
         alias vim='winpty nvim'
@@ -16,7 +16,7 @@ if [ "$OS" = "Windows_NT" ] && [ "$TERM_PROGRAM" = "mintty" ]; then
         alias nvim='winpty nvim'
     fi
 else
-    if which nvim >/dev/null 2>&1; then
+    if command -v nvim >/dev/null 2>&1; then
         alias vi='nvim'
         alias vim='nvim'
         alias view='nvim -R'

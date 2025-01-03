@@ -5,12 +5,11 @@ VERSION=14.1.1
 SHA256=4cf9f2741e6c465ffdb7c26f38056a59e2a2544b51f7cc128ef28337eeae4d8e
 
 . ../dotfiles/dotbase.sh
-exit_if_which_is_absent
 install_if_absent wget
 
 # Check if ripgrep is already installed
-if which rg > /dev/null; then
-	echo "ripgrep is already installed in $(which rg)"
+if command -v rg > /dev/null; then
+	echo "ripgrep is already installed in $(command -v rg)"
 	rg --version
 	exit 0
 fi

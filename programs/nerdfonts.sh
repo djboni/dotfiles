@@ -5,7 +5,6 @@ VERSION=v3.3.0
 SHA256=2d83782a350b604bfa70fce880604a41a7f77c3eec8f922f9cdc3c20952ddbe4
 
 . ../dotfiles/dotbase.sh
-exit_if_which_is_absent
 install_if_absent wget unzip
 
 set -x
