@@ -34,4 +34,5 @@ install_if_absent git vim tmux htop
 (set -x; cd programs && ./ripgrep.sh)
 (set -x; cd programs && ./fd.sh)
 (set -x; cd programs && ./nerdfonts.sh)
+#(set -x; cd programs && ./zig.sh)
 #(set -x; cd programs && ./node.sh)
