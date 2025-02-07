@@ -1,8 +1,8 @@
 #!/bin/bash
 # Download and install Node and NPM.
 set -e
-VERSION=v20.18.1
-SHA256=c6fa75c841cbffac851678a472f2a5bd612fff8308ef39236190e1f8dbb0e567
+VERSION=v20.18.2
+SHA256=4e50f727ae09bdafecf2322c72faf7cd82bf3b8851a16b8bb63974e0d8d6eceb
 
 usage() {
 	EXIT_STATUS="$1"
