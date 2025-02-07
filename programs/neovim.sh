@@ -5,10 +5,12 @@ if ldd --version | grep -qE 'ldd .* 2\.2[0-8]'; then
 	# Older glibc (2.28-)
 	VERSION=v0.9.5
 	SHA256=44ee395d9b5f8a14be8ec00d3b8ead34e18fe6461e40c9c8c50e6956d643b6ca
+	LINK="https://github.com/neovim/neovim/releases/download/$VERSION/nvim-linux64.tar.gz"
 else
 	# Newer glibc (2.29+)
-	VERSION=v0.10.3
-	SHA256=be189915a2a0da3615576e2db06a7c714aef0ae926b4da6107e589a3cc623e5c
+	VERSION=v0.10.4
+	SHA256=95aaa8e89473f5421114f2787c13ae0ec6e11ebbd1a13a1bd6fcf63420f8073f
+	LINK="https://github.com/neovim/neovim/releases/download/$VERSION/nvim-linux-x86_64.tar.gz"
 fi
 
 usage() {
@@ -42,7 +44,7 @@ set -x
 # Get source code
 if [ ! -f "downloads/nvim-linux64-$VERSION.tar.gz" ]; then
 	mkdir -p downloads
-	wget -q "https://github.com/neovim/neovim/releases/download/$VERSION/nvim-linux64.tar.gz" -O "downloads/nvim-linux64-$VERSION.tar.gz"
+	wget -q "$LINK" -O "downloads/nvim-linux-x86_64-$VERSION.tar.gz"
 fi
 
 # Verify the hash
