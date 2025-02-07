@@ -44,7 +44,7 @@ set -x
 # Get source code
 if [ ! -f "downloads/nvim-linux64-$VERSION.tar.gz" ]; then
 	mkdir -p downloads
-	wget -q "$LINK" -O "downloads/nvim-linux-x86_64-$VERSION.tar.gz"
+	wget -q "$LINK" -O "downloads/nvim-linux64-$VERSION.tar.gz"
 fi
 
 # Verify the hash
