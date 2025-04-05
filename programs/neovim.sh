@@ -8,8 +8,12 @@ if ldd --version | grep -qE 'ldd .* 2\.2[0-8]'; then
 	LINK="https://github.com/neovim/neovim/releases/download/$VERSION/nvim-linux64.tar.gz"
 else
 	# Newer glibc (2.29+)
-	VERSION=v0.10.4
-	SHA256=95aaa8e89473f5421114f2787c13ae0ec6e11ebbd1a13a1bd6fcf63420f8073f
+	#VERSION=v0.10.4
+	#SHA256=95aaa8e89473f5421114f2787c13ae0ec6e11ebbd1a13a1bd6fcf63420f8073f
+	#LINK="https://github.com/neovim/neovim/releases/download/$VERSION/nvim-linux-x86_64.tar.gz"
+
+	VERSION=v0.11.0
+	SHA256=fe0a5bc79e64c5e4d9f844cd96157ebd3919ef1343b329e9ebc3f455924cc7d6
 	LINK="https://github.com/neovim/neovim/releases/download/$VERSION/nvim-linux-x86_64.tar.gz"
 fi
 
