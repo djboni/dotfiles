@@ -1,8 +1,8 @@
 #!/bin/bash
 # Download and install zig.
 set -e
-VERSION=0.14.0
-SHA256=473ec26806133cf4d1918caf1a410f8403a13d979726a9045b421b685031a982
+VERSION=0.14.1
+SHA256=24aeeec8af16c381934a6cd7d95c807a8cb2cf7df9fa40d359aa884195c4716c
 
 usage() {
 	EXIT_STATUS="$1"
@@ -33,20 +33,21 @@ fi
 set -x
 
 # Get source code
-if [ ! -f "downloads/zig-linux-x86_64-$VERSION.tar.xz" ]; then
+#          zig-x86_64-linux-$VERSION
+if [ ! -f "downloads/zig-x86_64-linux-$VERSION.tar.xz" ]; then
 	mkdir -p downloads
-	wget -q "https://ziglang.org/download/$VERSION/zig-linux-x86_64-$VERSION.tar.xz" -O "downloads/zig-linux-x86_64-$VERSION.tar.xz"
+	wget -q "https://ziglang.org/download/$VERSION/zig-x86_64-linux-$VERSION.tar.xz" -O "downloads/zig-x86_64-linux-$VERSION.tar.xz"
 fi
 
 # Verify the hash
-sha256sum "downloads/zig-linux-x86_64-$VERSION.tar.xz" | grep -q "$SHA256" || {
-	sha256sum "downloads/zig-linux-x86_64-$VERSION.tar.xz"
+sha256sum "downloads/zig-x86_64-linux-$VERSION.tar.xz" | grep -q "$SHA256" || {
+	sha256sum "downloads/zig-x86_64-linux-$VERSION.tar.xz"
 	echo "Invalid hash. Should be $VERSION $SHA256" >&2
 	exit 1
 }
 
 mkdir -p ~/.local/bin
-tar -xf "downloads/zig-linux-x86_64-$VERSION.tar.xz"
-mv zig-linux-x86_64-$VERSION/zig ~/.local/bin/
-tar -cC zig-linux-x86_64-$VERSION lib doc | tar -xC ~/.local/
-rm -fr zig-linux-x86_64-$VERSION
+tar -xf "downloads/zig-x86_64-linux-$VERSION.tar.xz"
+mv zig-x86_64-linux-$VERSION/zig ~/.local/bin/
+tar -cC zig-x86_64-linux-$VERSION lib doc | tar -xC ~/.local/
+rm -fr zig-x86_64-linux-$VERSION
