@@ -4,16 +4,30 @@
     email = djboni@gmail.com
 [core]
     editor = nvim
+    # compression = 9
+    whitespace = error
+    preloadindex = true
+[advice]
+    # addEmptyPathspec = false
+    # pushNonFastForward = false
+    # statusHints = false
 [init]
     defaultBranch = master
 [pull]
     ff = only
+[status]
+    branch = true
+    showStash = true
+    showUntrackedFiles = all
 [diff]
     tool = nvimdiff
+    context = 3
+    renames = copies
+    interHumkContext = 10
 [difftool "nvimdiff"]
     cmd = nvim -d $LOCAL $REMOTE -c 'wincmd w' -c 'wincmd L'
 [merge]
-    #conflictStyle = diff3
+    # conflictStyle = diff3
     tool = nvimdiff4
 [mergetool "nvimdiff4"]
     cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
