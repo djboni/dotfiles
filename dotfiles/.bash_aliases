@@ -6,7 +6,7 @@ alias gk='gitk --all & :'
 alias gll='git log --oneline --graph'
 alias gla='gll $(git for-each-ref --format "%(refname)") $(git stash list --format="%h")'
 alias gl='gll -12'
-alias grl='gll $(git reflog | head -n40 | cut -f1 -d" ")'
+alias grl='gll $(git reflog | cut -f1 -d" " | sort -u | head -n100)'
 
 if [ "$OS" = "Windows_NT" ] && [ "$TERM_PROGRAM" = "mintty" ]; then
     if command -v nvim >/dev/null 2>&1; then

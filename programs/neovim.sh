@@ -12,8 +12,8 @@ else
 	#SHA256=95aaa8e89473f5421114f2787c13ae0ec6e11ebbd1a13a1bd6fcf63420f8073f
 	#LINK="https://github.com/neovim/neovim/releases/download/$VERSION/nvim-linux-x86_64.tar.gz"
 
-	VERSION=v0.11.3
-	SHA256=02b808a3ee8fc30161e07fe3c3edfb24b28bd0295323ac5dbdd8ec7012cac67d
+	VERSION=v0.11.4
+	SHA256=a74740047e73b2b380d63a474282814063d10650cd6cc95efa16d1713c7e616c
 	LINK="https://github.com/neovim/neovim/releases/download/$VERSION/nvim-linux-x86_64.tar.gz"
 fi
 
