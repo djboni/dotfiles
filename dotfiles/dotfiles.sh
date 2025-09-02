@@ -36,6 +36,7 @@ create_link ~ .vimrc
 # Directories
 mkdir -p ~/.config
 create_link ~ .config/bash
+create_link ~ .config/clangd
 create_link ~ .config/i3
 create_link ~ .config/i3status
 create_link ~ .config/scripts

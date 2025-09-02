@@ -1,0 +1,5 @@
+# https://clangd.llvm.org/config
+---
+Completion:
+  AllScopes: No
+  HeaderInsertion: Never
