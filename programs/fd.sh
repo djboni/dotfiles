@@ -1,8 +1,8 @@
 #!/bin/bash
 # Download and install fd.
 set -e
-VERSION=v10.2.0
-SHA256=d9bfa25ec28624545c222992e1b00673b7c9ca5eb15393c40369f10b28f9c932
+VERSION=v10.3.0
+SHA256=2b6bfaae8c48f12050813c2ffe1884c61ea26e750d803df9c9114550a314cd14
 
 usage() {
 	EXIT_STATUS="$1"
