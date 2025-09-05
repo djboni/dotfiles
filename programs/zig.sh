@@ -1,8 +1,8 @@
 #!/bin/bash
 # Download and install zig.
 set -e
-VERSION=0.14.1
-SHA256=24aeeec8af16c381934a6cd7d95c807a8cb2cf7df9fa40d359aa884195c4716c
+VERSION=0.15.1
+SHA256=c61c5da6edeea14ca51ecd5e4520c6f4189ef5250383db33d01848293bfafe05
 
 usage() {
 	EXIT_STATUS="$1"
