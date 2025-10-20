@@ -1,8 +1,8 @@
 #!/bin/bash
 # Download and install ripgrep.
 set -e
-VERSION=14.1.1
-SHA256=4cf9f2741e6c465ffdb7c26f38056a59e2a2544b51f7cc128ef28337eeae4d8e
+VERSION=15.0.0
+SHA256=253ad0fd5fef0d64cba56c70dccdacc1916d4ed70ad057cc525fcdb0c3bbd2a7
 
 usage() {
 	EXIT_STATUS="$1"
