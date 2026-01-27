@@ -138,7 +138,7 @@ if [ -f ~/.config/bash/git-prompt.sh ]; then
     export GIT_PS1_SHOWDIRTYSTATE=1
     export GIT_PS1_STATESEPARATOR=""
     #export PS1='\w$(__git_ps1 " (%s)")\$ '
-    export PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 "(%s)")\n\$ '
+    export PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 "(%s)")'$'\n''\$ '
 fi
 
 # Custom bashrc
