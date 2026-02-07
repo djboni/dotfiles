@@ -4,6 +4,7 @@
     email = djboni@gmail.com
 [core]
     editor = nvim
+    autocrlf = input
     # compression = 9
     whitespace = error
     preloadindex = true
